@@ -13,26 +13,26 @@ pipeline {
         stage("Parallel Testing") {
             parallel{
                 stage("Windows Testing"){
-            steps {
+                steps {
                 echo "Windows Testing Done"
             
             }
             }
-            }
-
             stage("Macos Testing"){
                 steps{
-
-                    echo "Macos Testing Done"
+                echo "Macos Testing Done"
                 }
             
 
             }
+            }
+
+            
         }
 
         stage("Final Stage Testing"){
             steps{
-                echo "Final Stage Testing Done"
+            echo "Final Stage Testing Done"
             }
         }
          
