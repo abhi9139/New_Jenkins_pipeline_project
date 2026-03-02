@@ -10,12 +10,12 @@ pipeline{
 
     stages{
         stage("Environment Variable Check"){
-            when{
-               environment name :'CURRENT_ENV' ,Value:'Prod'
-            }
+           when {
+            environment name: 'CURRENT_ENV', value: 'Prod'
+        }
             steps{
             echo "This is Environment Variable check stage"
-            sleep 5
+            
         }
 }
         
@@ -31,8 +31,10 @@ pipeline{
 
             '''
         }
+}
 
     }
 
-}
-}
+    }
+
+
