@@ -5,8 +5,12 @@ pipeline {
 
         stage("Linux testing") {
             steps {
-                sh 'sleep 5'
-                echo "This is Linux Testing"
+                sh '''
+                echo "This is linux testing
+                exit 1
+
+                '''
+             
             }
         }
 
