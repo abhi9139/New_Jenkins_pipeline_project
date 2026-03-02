@@ -3,23 +3,39 @@ pipeline {
 
     stages {
 
-        stage("STAGE1") {
+        stage("Linux testing") {
             steps {
                 sh 'sleep 5'
-                echo "This is Stage one"
+                echo "This is Linux Testing"
             }
         }
 
-        stage("STAGE2") {
+        stage("Parallel Testing") {
+            parallel{
+                stage("Windows Testing"){
             steps {
-                sh '''
-                #!/bin/bash
-                pwd
-                ls -lrt
-                echo "This is Stage two"
-                '''
+                echo "Windows Testing Done"
+            
+            }
+            }
+            }
+
+            stage("Macos Testing"){
+                steps{
+
+                    echo "Macos Testing Done"
+                }
+            
+
             }
         }
+
+        stage("Final Stage Testing"){
+            steps{
+                echo "Final Stage Testing Done"
+            }
+        }
+         
 
     }
 }
