@@ -5,13 +5,15 @@ pipeline {
 
         stage("Linux testing") {
             steps {
+                catchError(buildResult: 'SUCCESS',stageResult: 'FAILURE'){
+                echo "This is linux testing"
                 sh '''
-                echo "This is linux testing
                 exit 1
 
                 '''
              
             }
+        }
         }
 
         stage("Parallel Testing") {
