@@ -17,10 +17,11 @@ pipeline{
             echo "This is Environment Variable check stage"
             sleep 5
         }
+}
         
         stage("Parameter Check"){
             when{
-                expression={params.DEPLOY==true}
+                expression {params.DEPLOY==true}
             }
             steps{
             echo "This is Parameter Variable check stage"
@@ -34,14 +35,4 @@ pipeline{
     }
 
 }
-}
-
-
-
-
-
-
-
-
-
 }
