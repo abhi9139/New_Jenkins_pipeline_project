@@ -1,69 +1,47 @@
-pipeline {
-    agent any
+pipeline{
+    agent any 
 
-    stages {
+    parameters{
+        booleanParam(name:'DEPLOY',description:'Want to deploy to production')
+    }
+    environment{
+        CURRENT_ENV="Prod"
+    }
 
-        stage("Stagea testing") {
-            steps {
-                catchError(buildResult: 'SUCCESS',stageResult: 'FAILURE'){
-                echo "This is linux testing"
-                sh '''
-                exit 1
-
-                '''
-             
+    stages{
+        stage("Environment Variable Check"){
+            when{
+               environment name :'CURRENT_ENV' ,Value:'Prod'
             }
-        }
-        }
-
-           stage("Stageb testing") {
-            steps {
-                script{
-                try{
-                
-                echo "This is linux testing"
-                sh '''
-                exit 1
-
-                '''
-                }
-                catch(err){
-                    echo "Error catched :${err}"
-                    currentBuild.result="SUCCESS"
-
-                }
-            
-            }
-            }
-        }
-    
-
-        stage("Parallel Testing") {
-            parallel{
-                stage("Windows Testing"){
-                steps {
-                echo "Windows Testing Done"
-            
-            }
-            }
-            stage("Macos Testing"){
-                steps{
-                echo "Macos Testing Done"
-                }
-            
-
-            }
-            }
-
-            
-        }
-
-        stage("Final Stage Testing"){
             steps{
-            echo "Final Stage Testing Done"
-            }
+            echo "This is Environment Variable check stage"
+            sleep 5
         }
-         
+        
+        stage("Parameter Check"){
+            when{
+                expression={params.DEPLOY==true}
+            }
+            steps{
+            echo "This is Parameter Variable check stage"
+            sh '''
+            pwd
+            ls -lrt
+
+            '''
+        }
 
     }
+
+}
+}
+
+
+
+
+
+
+
+
+
 }
