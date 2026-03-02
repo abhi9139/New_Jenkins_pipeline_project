@@ -18,7 +18,8 @@ pipeline {
 
            stage("Stageb testing") {
             steps {
-                try(){
+                script{
+                try{
                 
                 echo "This is linux testing"
                 sh '''
@@ -32,8 +33,10 @@ pipeline {
 
                 }
             
+            }
+            }
         }
-        }
+    
 
         stage("Parallel Testing") {
             parallel{
