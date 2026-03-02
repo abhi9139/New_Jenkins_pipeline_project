@@ -3,7 +3,7 @@ pipeline {
 
     stages {
 
-        stage("Linux testing") {
+        stage("Stagea testing") {
             steps {
                 catchError(buildResult: 'SUCCESS',stageResult: 'FAILURE'){
                 echo "This is linux testing"
@@ -13,6 +13,25 @@ pipeline {
                 '''
              
             }
+        }
+        }
+
+           stage("Stageb testing") {
+            steps {
+                try(){
+                
+                echo "This is linux testing"
+                sh '''
+                exit 1
+
+                '''
+                }
+                catch(err){
+                    echo "Error catched :${err}"
+                    currentBuild.result="SUCCESS"
+
+                }
+            
         }
         }
 
