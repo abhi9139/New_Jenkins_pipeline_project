@@ -1,7 +1,7 @@
 pipeline{
     agent any
     parameters{
-        booleanParam(name:'Deploy', description:"Want to deploy parameters")
+        booleanParam(name:'DEPLOY', description:"Want to deploy parameters")
     }
     environment{
         Name_Env="Prod"
@@ -25,7 +25,7 @@ pipeline{
 
         stage("Parametres Check"){
             when{
-                expression {params.Deploy==true}
+                expression {params.DEPLOY==true}
             }
             steps{
                 echo "Params are Checked"
@@ -37,20 +37,5 @@ pipeline{
         }
     }
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
