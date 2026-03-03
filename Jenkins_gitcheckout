@@ -14,15 +14,15 @@
 
 
         stage("FIRST STAGE CHECKOUT"){
-            when{
-            BRANCH_NAME=='origin/main'
-                }
+         when {
+        expression { env.BRANCH_NAME == 'main' }
+    }
             
             steps{
                 sh '''
                 pwd
                 ls -lrt
-                echo"This Is First Stage"
+                echo "This Is First Stage"
                 '''
 
             }
