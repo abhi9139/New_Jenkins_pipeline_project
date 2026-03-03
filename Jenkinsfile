@@ -39,11 +39,9 @@ pipeline{
         }
         stage("Branch Check"){
             when{
-              
-                branch "main"
-               
-               }
+              branch "main"
             }
+        
             steps{
                 echo"Params are Checked"
                 sh'''
