@@ -39,7 +39,7 @@ pipeline{
         }
         stage("Branch Check"){
             when{
-               anyof{
+               any of{
                 branch "main"
                 environment name:"Name_env",value:"Prod"
                }
