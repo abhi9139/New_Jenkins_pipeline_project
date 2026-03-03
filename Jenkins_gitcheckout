@@ -18,7 +18,7 @@
 
         stage("FIRST STAGE CHECKOUT"){
          when {
-        expression { env.BRANCH_NAME == 'main' }
+        branch 'main'
     }
             
             steps{
