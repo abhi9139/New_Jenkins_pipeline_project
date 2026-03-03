@@ -1,45 +1,57 @@
-
-
 pipeline{
-    agent any
     stages{
-        stage("This is Stage one"){
-        steps{
-        echo "This is Stage one Testing"
-        sleep 10
-
+        stage("This is Linux testing"){
+            steps{
+                echo "This is linux Testing"
+            }
         }
-}
-        stage("This is Stage Two"){
-        steps{
-            sh'''
-            pwd
-            ls -lrt
-            echo "This is Stage one Testing"
-            sleep 10
-            '''
+
+        stage("This is Parallel Testing"){
+            parallel(){
+                stage("Windows Testing"){
+                    steps{
+                        sh '''
+                        ls -lrt
+                        pwd
+                        sleep 10
+                        '''
+
+
+                    }
+
+
+
+                }
+                 stage("Macos Testing"){
+                    steps{
+                        sh '''
+                        ls -lrt
+                        pwd
+                        sleep 10
+                        '''
+
+
+                    }
+
+
+
+                }
+
+
 
             }
 
 
 
-
         }
 
 
 
-
-
+        stage("This is final testing"){
+            steps{
+                echo "This is final stage testing"
+            }
+        }
     }
-
-
-
-
-
-
-
-
-
-
 
 }
