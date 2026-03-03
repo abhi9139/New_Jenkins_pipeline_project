@@ -17,9 +17,7 @@
 
 
         stage("FIRST STAGE CHECKOUT"){
-         when {
-        branch 'main'
-    }
+       
             
             steps{
                 sh '''
