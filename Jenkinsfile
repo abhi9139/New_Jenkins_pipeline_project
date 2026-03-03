@@ -1,58 +1,56 @@
 pipeline{
     agent any
+    parameters{
+        booleanParam(name:'Deploy', description:"Want to deploy parameters")
+    }
+    environment{
+        Name_Env="Prod"
+    }
+
     stages{
-        stage("This is Linux testing"){
+        stage("Environment variable check"){
+            when{
+                environment name:"Name_Env",value:"Prod"
+            }
             steps{
-                echo "This is linux Testing"
+                echo"Environment Variable is Checked"
+                sh '''
+                ls -lrt
+                pwd
+                sleep 5
+                '''
+
             }
         }
 
-        stage("This is Parallel Testing"){
-            parallel(){
-                stage("Windows Testing"){
-                    steps{
-                        sh '''
-                        ls -lrt
-                        pwd
-                        sleep 10
-                        '''
-
-
-                    }
-
-
-
-                }
-                 stage("Macos Testing"){
-                    steps{
-                        sh '''
-                        ls -lrt
-                        pwd
-                        sleep 10
-                        '''
-
-
-                    }
-
-
-
-                }
-
-
-
+        stage("Parametres Check"){
+            when{
+                expression {params.Deploy==true}
             }
-
-
-
-        }
-
-
-
-        stage("This is final testing"){
             steps{
-                echo "This is final stage testing"
+                echo "Params are Checked"
+                ls -lrt
+                sleep 5
+
+
             }
         }
     }
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
