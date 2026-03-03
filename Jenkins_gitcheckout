@@ -1,5 +1,8 @@
  pipeline{
     agent any
+    environment{
+        Name_Env="Prod"
+    }
     stages{
        
         stage("GIT_CHECKOUT"){
