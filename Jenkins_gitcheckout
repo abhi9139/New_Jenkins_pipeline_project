@@ -1,0 +1,52 @@
+ pipeline{
+    stages{
+       
+        stage("GIT_CHECKOUT"){
+            steps{
+                git branch: 'main', 
+                credentialsId: 'gattu9139',
+                url: 'https://github.com/abhi9139/gattu9139.git'
+
+            }
+        }
+        
+
+
+
+
+        stage("FIRST STAGE CHECKOUT"){
+            when{
+            BRANCH_NAME=='origin/main'
+                }
+            }
+            steps{
+                sh '''
+                pwd
+                ls -lrt
+                echo"This Is First Stage"
+                '''
+
+            }
+        }
+        stage("SECOND STAGE CHECKOUT"){
+            steps{
+                sh '''
+                pwd
+                ls -lrt
+                '''
+            }
+        }
+     
+
+
+
+
+
+    }
+
+
+
+
+
+
+ }
