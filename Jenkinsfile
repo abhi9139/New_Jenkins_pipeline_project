@@ -28,9 +28,7 @@ pipeline{
                 expression {params.DEPLOY==true}
             }
             steps{
-                echo "Params are Checked"
-                ls -lrt
-                sleep 5
+                echo"Params are Checked"
 
 
             }
