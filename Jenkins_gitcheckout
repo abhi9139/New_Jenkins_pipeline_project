@@ -4,9 +4,7 @@
        
         stage("GIT_CHECKOUT"){
             steps{
-                git branch: 'main', 
-                credentialsId: 'gattu9139',
-                url: 'https://github.com/abhi9139/gattu9139.git'
+               git branch: 'main', credentialsId: 'gattu91', url: 'https://github.com/abhi9139/gattu9139.git'
 
             }
         }
