@@ -1,38 +1,45 @@
-pipeline {
-    agent any 
 
-    parameters {
-        booleanParam(name: 'DEPLOY', description: 'Want to deploy to production')
-    }
 
-    environment {
-        CURRENT_ENV = "Prod"
-    }
+pipeline{
+    agent any
+    stages{
+        stage("This is Stage one"){
+        steps{
+        echo "This is Stage one Testing"
+        sleep 10
 
-    stages {
+        }
+}
+        stage("This is Stage Two"){
+        steps{
+            sh'''
+            pwd
+            ls -lrt
+            echo "This is Stage one Testing"
+            sleep 10
+            '''
 
-        stage("Environment Variable Check") {
-            when {
-                environment name: 'CURRENT_ENV', value: 'Prod'
             }
-            steps {
-                echo "This is Environment Variable check stage"
-                sleep time: 5, unit: 'SECONDS'
-            }
+
+
+
+
         }
 
-        stage("Parameter Check") {
-            when {
-                expression { params.DEPLOY == true }
-            }
-            steps {
-                echo "This is Parameter Variable check stage"
-                sh '''
-                    pwd
-                    ls -lrt
-                '''
-            }
-        }
+
+
+
 
     }
+
+
+
+
+
+
+
+
+
+
+
 }
