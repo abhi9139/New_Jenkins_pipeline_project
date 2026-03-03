@@ -17,7 +17,7 @@
             when{
             BRANCH_NAME=='origin/main'
                 }
-            }
+            
             steps{
                 sh '''
                 pwd
@@ -39,7 +39,7 @@
 
 
 
-
+    }
 
     }
 
