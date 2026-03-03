@@ -37,6 +37,23 @@ pipeline{
 
             }
         }
+        stage("Branch Check"){
+            when{
+               anyof{
+                branch "main"
+                environment name:"Name_env",value:"Prod"
+               }
+            }
+            steps{
+                echo"Params are Checked"
+                sh'''
+                ls -lrt
+                pwd
+                '''
+
+
+            }
+        }
     }
     
 
