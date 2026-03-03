@@ -29,6 +29,10 @@ pipeline{
             }
             steps{
                 echo"Params are Checked"
+                sh'''
+                ls -lrt
+                pwd
+                '''
 
 
             }
