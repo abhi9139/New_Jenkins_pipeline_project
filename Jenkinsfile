@@ -8,6 +8,40 @@ pipeline{
     }
 
     stages{
+
+
+        stage("CHECKOUT"){
+            steps{
+        checkout([$class:'GitSCM',
+             branches: [[name: '*/main']],
+            extensions: [],
+            userRemoteConfigs: [[credentialsId: 'gattu9139', 
+            url: 'https://github.com/abhi9139/gattu9139.git'
+            ]]
+            ])
+            }
+        }
+
+
+        stage("Branch Check"){
+            when{
+             expression{
+                return env.GIT_BRANCH=='origin/main'
+             }
+            }
+            steps{
+                echo"Params are Checked"
+                sh'''
+                ls -lrt
+                pwd
+                echo "Branch is Checked"
+                '''
+
+
+            }
+        }
+
+        
         stage("Environment variable check"){
             when{
                 environment name:"Name_Env",value:"Prod"
@@ -37,21 +71,7 @@ pipeline{
 
             }
         }
-        stage("Branch Check"){
-            when{
-              branch "main"
-            }
-        
-            steps{
-                echo"Params are Checked"
-                sh'''
-                ls -lrt
-                pwd
-                '''
-
-
-            }
-        }
+       
     }
     
 
