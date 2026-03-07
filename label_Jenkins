@@ -1,0 +1,42 @@
+pipeline{
+    agent {label 'slave1'}
+
+    stages{
+        stage("FIRST STAGE"){
+            steps{
+            sleep 10
+            echo "This is Stage one by label Slave1"    
+
+            }
+        }
+
+         stage("SECOND STAGE"){
+            steps{
+            sleep 10
+            echo "This is Stage two by label Slave2"   
+            sh '''
+               ls -lrt
+               pwd
+               '''
+            }
+        }
+
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
